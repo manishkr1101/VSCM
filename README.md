@@ -3,7 +3,8 @@
 # Prerequisite
 - Node v 12.X
 - truffle
-
+- Ganache
+- Metamask in Google Chrome
 
 # Getting Started
 Compiling smart contracts
