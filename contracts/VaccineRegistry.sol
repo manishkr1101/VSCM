@@ -41,7 +41,7 @@ contract VaccineRegistry {
         
         vaccinated[patient_address] = true;
         
-        administratedVaccines[_aadhaar]['dcotor'] = doctor_address;
+        administratedVaccines[_aadhaar]['doctor'] = doctor_address;
         administratedVaccines[_aadhaar]['patient'] = patient_address;
         administratedVaccines[_aadhaar]['auth'] = msg.sender;
         

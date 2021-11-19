@@ -1,6 +1,8 @@
 import Web3 from 'web3';
 
 class Web3Wrapper {
+    /**@type {Web3} */
+    static web3;
     static async load() {
         if (window.ethereum) {
             window.web3 = new Web3(window.ethereum);
@@ -11,6 +13,7 @@ class Web3Wrapper {
         else {
             window.alert("Non Ethereum browser detected")
         }
+        this.web3 = window.web3;
     }
 
     static async getCurrentAccount() {
@@ -24,7 +27,7 @@ class Web3Wrapper {
 
     static async getNetworkId() {
         if(!window.web3.eth) alert('dekha')
-        return await window.web3.eth.net.getId();
+        return await this.web3.eth.net.getId();
     }
 
     static async buildContractWithAbi(ContractAbi) {
@@ -32,7 +35,7 @@ class Web3Wrapper {
         const networkData = ContractAbi.networks[networkId];
 
         if (networkData) {
-            return new window.web3.eth.Contract(ContractAbi.abi, networkData.address);
+            return new this.web3.eth.Contract(ContractAbi.abi, networkData.address);
             
         } else {
             alert('the smart contracts not deplo yed to the current network')

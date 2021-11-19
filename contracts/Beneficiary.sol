@@ -14,8 +14,8 @@ contract Beneficiary {
         bool complicacy;
     }
     
-    constructor(uint256 _t) public {
-        phase2Time = _t;
+    constructor() public {
+        phase2Time = 1637334500990;
         registrationCount = 0;
     }
     
@@ -26,7 +26,7 @@ contract Beneficiary {
     
     function registerBeneficiary(uint _aadhaar, string memory _name, uint16 _age, bool _comp) public {
         if(block.timestamp > phase2Time) {
-            require(_age >= 30);
+            require(_age >= 18);
         }
         else {
             require(_age >= 50, "Age must be greater equal than 50");

@@ -12,6 +12,9 @@ class Feedback {
         this.contract = await web3.buildContractWithAbi(FeedbackAbi);
     }
 
+    async updateFeedback(feedback) {
+
+    }
 }
 
 

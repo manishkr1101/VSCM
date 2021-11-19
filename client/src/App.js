@@ -5,15 +5,17 @@ import React, { Component } from 'react';
 import web3 from './services/web3'
 
 import Navbar from './components/Navbar';
-import Beneficiary from './services/contracts/Beneficiary';
+import Links from './links';
 
 class App extends Component {
   constructor() {
     super();
+    this.state = {
+      links: []
+    }
     this.init().then(async () => {
       // TODO : remove this line 
-      const count = await Beneficiary.getRegisteredCount();
-      console.log(count)
+      this.setState({links: Links.USER})
     })
     
   }
@@ -21,11 +23,15 @@ class App extends Component {
   async init() {
     await web3.load();
   }
+
+  async getUserRole() {
+    // return user,doctor,vaccine_producer,govt_auth
+  }
   
   render() {
     return (
       <div className="App">
-        <Navbar/>
+        <Navbar links={this.state.links}/>
         
       </div>
     );
