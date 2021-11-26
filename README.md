@@ -15,3 +15,12 @@ Migrating smart contracts to ganache
 ```bash
 sudo truffle migrate
 ```
+
+Working on front end 
+```bash
+cd client
+npm install # installing dependencies
+npm start # starting developement server
+```
+
+[Read More...](/client/README.md)

@@ -35,6 +35,18 @@ class Beneficiary {
         await this.init();
         return await this.contract.methods.registered(await web3.getCurrentAccount()).call();
     }
+
+    async getUser() {
+        await this.init();
+        const userArray = await this.contract.methods.getUser().call({from: await web3.getCurrentAccount()});
+        const user = {
+            aadhar: userArray[0],
+            name: userArray[1],
+            age: userArray[2],
+            complicacy: userArray[3]
+        }
+        return user;
+    }
 }
 
 

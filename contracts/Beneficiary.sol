@@ -32,7 +32,7 @@ contract Beneficiary {
             require(_age >= 50, "Age must be greater equal than 50");
         }
         require(verifyAadhaar(_aadhaar), "Invalid Aadhaar");
-        // require(registered[msg.sender] == false, "Already registered");
+        require(registered[msg.sender] == false, "Already registered");
         Person memory p = Person(_aadhaar, _name, _age, _comp);
         
         persons[msg.sender] = p;
@@ -43,6 +43,10 @@ contract Beneficiary {
     function getName() public view returns(string memory) {
         string memory str = persons[msg.sender].name;
         return str;
+    }
+
+    function getUser() public view returns(uint, string memory, uint16, bool) {
+        return (persons[msg.sender].aadhaar, persons[msg.sender].name, persons[msg.sender].age, persons[msg.sender].complicacy);
     }
     
     function doesExist(address pat, uint _aadhaar) public view returns(bool) {
