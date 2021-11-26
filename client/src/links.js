@@ -1,30 +1,40 @@
+import Blank from "./pages/blank";
+import UserHome from "./pages/user-home";
+import VaccineRegistration from "./pages/vaccine-registration";
+
 export default {
     USER: [
         {
             label: 'Home',
-            href: '/'
+            href: '/',
+            Component: UserHome
         },
         {
             label: 'Registration',
-            href: '/vaccine-registration'
+            href: '/vaccine-registration',
+            Component: VaccineRegistration
         },
         {
             label: 'Feedback',
-            href: '/user-feedback'
+            href: '/user-feedback',
+            Component: Blank
         },
         {
             label: 'Check Vaccine Legitemecy',
-            href: '/validate-vaccine'
+            href: '/validate-vaccine',
+            Component: Blank
         }
     ],
     DOCTOR: [
         {
             label: 'Home',
-            href: '/'
+            href: '/',
+            Component: Blank
         },
         {
             label: 'Vaccinate',
-            href: '/vaccinate'
+            href: '/vaccinate',
+            Component: Blank
         }
     ]
 }

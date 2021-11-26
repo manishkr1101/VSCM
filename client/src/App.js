@@ -1,6 +1,7 @@
 
 import './App.css';
 import React, { Component } from 'react';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
 
 import web3 from './services/web3'
 
@@ -11,11 +12,11 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      links: []
+      links: Links.USER
     }
     this.init().then(async () => {
       // TODO : remove this line 
-      this.setState({links: Links.USER})
+      // this.setState({links: Links.DOCTOR})
     })
     
   }
@@ -30,10 +31,19 @@ class App extends Component {
   
   render() {
     return (
-      <div className="App">
-        <Navbar links={this.state.links}/>
-        
-      </div>
+      <BrowserRouter>
+        <div className="App">
+          <Navbar links={this.state.links}/>
+
+          <Routes>
+            {this.state.links.map(link => {
+              return <Route key={link.href} path={link.href} element={<link.Component/>}/>
+            })}
+          </Routes>
+          
+        </div>
+      </BrowserRouter>
+      
     );
   }
 }

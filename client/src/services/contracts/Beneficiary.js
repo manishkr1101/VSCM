@@ -30,6 +30,11 @@ class Beneficiary {
     async validate(aadharNumber, address) {
         return false;
     }
+
+    async isRegistered() {
+        await this.init();
+        return await this.contract.methods.registered(await web3.getCurrentAccount()).call();
+    }
 }
 
 

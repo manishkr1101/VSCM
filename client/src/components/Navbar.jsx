@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import './Navbar.scss'
 import web3 from '../services/web3';
+import { Link } from 'react-router-dom';
 
 class Navbar extends Component {
     constructor() {
@@ -33,8 +34,9 @@ class Navbar extends Component {
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             {this.props.links.map(link => {
                                 return (
-                                    <li className="nav-item">
-                                        <a className="nav-link active" aria-current="page" href={link.href}>{link.label}</a>
+                                    <li key={link.href} className="nav-item">
+                                        {/* <a className="nav-link active" aria-current="page" href={link.href}>{link.label}</a> */}
+                                        <Link className="nav-link active" to={link.href}>{link.label}</Link>
                                     </li>
                                 )
                             })}

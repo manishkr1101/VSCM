@@ -4,6 +4,7 @@ class Web3Wrapper {
     /**@type {Web3} */
     static web3;
     static async load() {
+        if(this.web3) return;
         if (window.ethereum) {
             window.web3 = new Web3(window.ethereum);
             await window.ethereum.enable();
@@ -26,7 +27,7 @@ class Web3Wrapper {
     }
 
     static async getNetworkId() {
-        if(!window.web3.eth) alert('dekha')
+        await this.load();
         return await this.web3.eth.net.getId();
     }
 

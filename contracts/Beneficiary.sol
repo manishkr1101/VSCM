@@ -4,7 +4,7 @@ pragma solidity >=0.4.22 <0.9.0;
 contract Beneficiary {
     uint registrationCount;
     mapping(address => Person) persons;
-    mapping(address => bool) registered;
+    mapping(address => bool) public registered;
     uint256 phase2Time;
 
     struct Person {
@@ -32,7 +32,7 @@ contract Beneficiary {
             require(_age >= 50, "Age must be greater equal than 50");
         }
         require(verifyAadhaar(_aadhaar), "Invalid Aadhaar");
-        require(registered[msg.sender] == false, "Already registered");
+        // require(registered[msg.sender] == false, "Already registered");
         Person memory p = Person(_aadhaar, _name, _age, _comp);
         
         persons[msg.sender] = p;
