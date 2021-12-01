@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 class Blank extends Component {
     render() {
         return (
-            <div>
-                Coming Soon
+            <div className="container">
+                <h1 style={{textAlign: "center"}}>Coming Soon...</h1>
             </div>
         );
     }

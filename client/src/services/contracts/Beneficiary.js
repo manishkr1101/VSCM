@@ -1,6 +1,14 @@
 import web3 from "../web3";
 import BeneficiaryAbi from '../../contracts/Beneficiary.json'
 
+export const ROLE = {
+    USER: 0,
+    DOCTOR: 1,
+    PRODUCER: 2,
+    GOVT_AUTHORITY: 3,
+    ADMIN: 99
+};
+
 class Beneficiary {
     constructor() {
         this.contract = null;
@@ -46,6 +54,24 @@ class Beneficiary {
             complicacy: userArray[3]
         }
         return user;
+    }
+
+    async addRole(address, role) {
+        await this.init();
+        await this.contract.methods
+            .addRole(address, role)
+            .send({
+                from: await web3.getCurrentAccount()
+            })
+    }
+
+    async getRole() {
+        await this.init();
+        const roleString = await this.contract
+                                    .methods
+                                    .roles(await web3.getCurrentAccount())
+                                    .call();
+        return Number.parseInt(roleString);
     }
 }
 

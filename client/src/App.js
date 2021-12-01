@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 
 import web3 from './services/web3'
+import Beneficiary, { ROLE } from './services/contracts/Beneficiary'
 
 import Navbar from './components/Navbar';
 import Links from './links';
@@ -12,11 +13,23 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      links: Links.USER
+      links: []
     }
     this.init().then(async () => {
-      // TODO : remove this line 
-      // this.setState({links: Links.DOCTOR})
+      
+      const role = await this.getUserRole();
+      let links = []
+      
+      if(role === ROLE.DOCTOR) {
+        links = Links.DOCTOR;
+      }
+      else if(role === ROLE.ADMIN) {
+        links = Links.ADMIN;
+      }
+      else {
+        links = Links.USER;
+      }
+      this.setState({links: links})
     })
     
   }
@@ -26,7 +39,8 @@ class App extends Component {
   }
 
   async getUserRole() {
-    // return user,doctor,vaccine_producer,govt_auth
+    // return user,doctor,vaccine_producer,govt_auth,admin
+    return Beneficiary.getRole();
   }
   
   render() {

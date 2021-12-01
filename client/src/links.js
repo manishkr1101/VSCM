@@ -1,3 +1,4 @@
+import AddRole from "./pages/admin/add-role";
 import Blank from "./pages/blank";
 import UserHome from "./pages/user-home";
 import VaccineRegistration from "./pages/vaccine-registration";
@@ -35,6 +36,13 @@ export default {
             label: 'Vaccinate',
             href: '/vaccinate',
             Component: Blank
+        }
+    ],
+    ADMIN: [
+        {
+            label: 'Home',
+            href: '/',
+            Component: AddRole
         }
     ]
 }

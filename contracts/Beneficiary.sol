@@ -5,6 +5,9 @@ contract Beneficiary {
     uint registrationCount;
     mapping(address => Person) persons;
     mapping(address => bool) public registered;
+
+    address ADMIN_ADDRESS;
+    mapping(address => uint) public roles;
     uint256 phase2Time;
 
     struct Person {
@@ -17,6 +20,7 @@ contract Beneficiary {
     constructor() public {
         phase2Time = 1637334500990;
         registrationCount = 0;
+        // ADMIN_ADDRESS = 0x095f557754761fE760Dd9b623CC5e7E70D4f342B;
     }
     
     function verifyAadhaar(uint _aadhaar) public pure returns(bool) {
@@ -55,6 +59,11 @@ contract Beneficiary {
             return true;
         }
         else return false;
+    }
+
+    function addRole(address user_address, uint role) public {
+        // require(msg.sender == ADMIN_ADDRESS, "USER IS NOT ADMIN");
+        roles[user_address] = role;
     }
     
     function getRegisteredCount() public view returns(uint) {
