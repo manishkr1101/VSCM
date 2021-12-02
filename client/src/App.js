@@ -26,6 +26,12 @@ class App extends Component {
       else if(role === ROLE.ADMIN) {
         links = Links.ADMIN;
       }
+      else if(role === ROLE.PRODUCER) {
+        links = Links.PRODUCER;
+      }
+      else if(role === ROLE.GOVT_AUTHORITY) {
+        links = Links.GOVT_AUTHORITY;
+      }
       else {
         links = Links.USER;
       }

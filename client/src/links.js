@@ -3,7 +3,7 @@ import Blank from "./pages/blank";
 import UserHome from "./pages/user-home";
 import VaccineRegistration from "./pages/vaccine-registration";
 
-export default {
+export default  {
     USER: [
         {
             label: 'Home',
@@ -44,5 +44,7 @@ export default {
             href: '/',
             Component: AddRole
         }
-    ]
+    ],
+    GOVT_AUTHORITY: [],
+    PRODUCER: []
 }
