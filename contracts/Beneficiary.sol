@@ -5,6 +5,8 @@ contract Beneficiary {
     uint registrationCount;
     mapping(address => Person) persons;
     mapping(address => bool) public registered;
+    mapping(bytes => bool) registered_aadhar;
+    mapping(address => bytes) person_hash;
 
     address ADMIN_ADDRESS;
     mapping(address => uint) public roles;
@@ -20,7 +22,8 @@ contract Beneficiary {
     constructor() public {
         phase2Time = 1637334500990;
         registrationCount = 0;
-        // ADMIN_ADDRESS = 0x095f557754761fE760Dd9b623CC5e7E70D4f342B;
+        ADMIN_ADDRESS = 0x095f557754761fE760Dd9b623CC5e7E70D4f342B;
+        addRole(ADMIN_ADDRESS, 99);
     }
     
     function verifyAadhaar(uint _aadhaar) public pure returns(bool) {
@@ -28,19 +31,30 @@ contract Beneficiary {
         return true;
     }
     
-    function registerBeneficiary(uint _aadhaar, string memory _name, uint16 _age, bool _comp) public {
-        if(block.timestamp > phase2Time) {
-            require(_age >= 18);
-        }
-        else {
-            require(_age >= 50, "Age must be greater equal than 50");
-        }
-        require(verifyAadhaar(_aadhaar), "Invalid Aadhaar");
-        require(registered[msg.sender] == false, "Already registered");
-        Person memory p = Person(_aadhaar, _name, _age, _comp);
+    // function registerBeneficiary(uint _aadhaar, string memory _name, uint16 _age, bool _comp) public {
+    //     if(block.timestamp > phase2Time) {
+    //         require(_age >= 18);
+    //     }
+    //     else {
+    //         require(_age >= 50, "Age must be greater equal than 50");
+    //     }
+    //     require(verifyAadhaar(_aadhaar), "Invalid Aadhaar");
+    //     require(registered[msg.sender] == false, "Already registered");
+    //     Person memory p = Person(_aadhaar, _name, _age, _comp);
         
-        persons[msg.sender] = p;
+    //     persons[msg.sender] = p;
+    //     registered[msg.sender] = true;
+    //     registrationCount += 1;
+    // }
+
+    function registerBeneficiary(bytes memory aadhar_Hash, bytes memory P_Hash) public {
+        
+        require(registered_aadhar[aadhar_Hash] == false, "Already registered");
+        require(registered[msg.sender] == false, "Already registered");
+        
+        person_hash[msg.sender] = P_Hash;
         registered[msg.sender] = true;
+        registered_aadhar[aadhar_Hash] = true;
         registrationCount += 1;
     }
     

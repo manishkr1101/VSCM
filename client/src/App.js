@@ -18,6 +18,7 @@ class App extends Component {
     this.init().then(async () => {
       
       const role = await this.getUserRole();
+      console.log(role)
       let links = []
       
       if(role === ROLE.DOCTOR) {
