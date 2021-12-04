@@ -38,12 +38,12 @@ class Beneficiary {
             
 
             const hashPI = hash([aadharNumber, name, age, complicacy]);
-            console.log('PI_Hash', hashPI);
+            console.log('PI_Hash', hashPI); // TODO : remove
             const hashSecret = hash([getSecretKey(account)]);
             const hashAadhar = hash([aadharNumber]);
-            console.log('P_Hash ', hash([hashPI, hashSecret]));
-            await this.contract.methods
-                .registerBeneficiary(Buffer.from(hashAadhar), window.web3.utils.hexToBytes(hash([hashPI, hashSecret])))
+            console.log('P_Hash ', hash([hashPI, hashSecret])); // TODO : remove
+            await this.contract.methods // here second paramater is using web3 for conversion to bytes beacause only this worked
+                .registerBeneficiary(Buffer.from(hashAadhar), web3.utils.hexToBytes(hash([hashPI, hashSecret])))
                 .send({
                     from: account
                 })
@@ -83,14 +83,6 @@ class Beneficiary {
 
     async getUser() {
         await this.init();
-        // const userArray = await this.contract.methods.getUser().call({from: await web3.getCurrentAccount()});
-        // const user = {
-        //     aadhar: userArray[0],
-        //     name: userArray[1],
-        //     age: userArray[2],
-        //     complicacy: userArray[3]
-        // }
-        // return user;
 
         const user = this.userTable.findById(await web3.getCurrentAccount());
         // console.log(user)

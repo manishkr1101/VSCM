@@ -15,6 +15,7 @@ class Web3Wrapper {
             window.alert("Non Ethereum browser detected")
         }
         this.web3 = window.web3;
+        this.utils = this.web3.utils;
     }
 
     static async getCurrentAccount() {
