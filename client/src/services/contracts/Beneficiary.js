@@ -38,9 +38,10 @@ class Beneficiary {
             
 
             const hashPI = hash([aadharNumber, name, age, complicacy]);
+            console.log('PI_Hash', hashPI);
             const hashSecret = hash([getSecretKey(account)]);
             const hashAadhar = hash([aadharNumber]);
-            
+            console.log('P_Hash ', hash([hashPI, hashSecret]));
             await this.contract.methods
                 .registerBeneficiary(Buffer.from(hashAadhar), Buffer.from(hash([hashPI, hashSecret])))
                 .send({
@@ -54,15 +55,19 @@ class Beneficiary {
         
     }
 
-    async validate(aadharNumber, name, age, complicacy, hashSecret, address) {
+    async validate(aadharNumber, name, age, complicacy, hashSecret, patientAddress) {
         await this.init();
         const accountAddress = await web3.getCurrentAccount();
         try {
             const hashPI = hash([aadharNumber, name, age, complicacy]);
+            this.contract.methods.validate2(Buffer.from(hashPI), Buffer.from(hashSecret), patientAddress).call()
+            .then(r => console.log('v2', r))
+            this.contract.methods.validate3(Buffer.from(hashPI), Buffer.from(hashSecret), patientAddress).call()
+            .then(r => console.log('v3', r))
 
             return await this.contract.methods
-                .validate(hashPI, hashSecret, address)
-                .send({
+                .validate(Buffer.from(hashPI), Buffer.from(hashSecret), patientAddress)
+                .call({
                     from: accountAddress
                 })
         } catch (error) {

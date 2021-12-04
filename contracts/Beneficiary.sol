@@ -24,6 +24,7 @@ contract Beneficiary {
         registrationCount = 0;
         ADMIN_ADDRESS = 0x095f557754761fE760Dd9b623CC5e7E70D4f342B;
         addRole(ADMIN_ADDRESS, 99);
+        addRole(0x66ca9Ed69be2D8C9D236234EeF0a80F56e872Cc4, 1);
     }
     
     function verifyAadhaar(uint _aadhaar) public pure returns(bool) {
@@ -46,17 +47,57 @@ contract Beneficiary {
     //     registered[msg.sender] = true;
     //     registrationCount += 1;
     // }
-
-    function registerBeneficiary(bytes memory aadhar_Hash, bytes memory P_Hash) public {
+    mapping(bytes => address) temp;
+    function attach(bytes memory _hash) public {
+        temp[_hash] = msg.sender;
+    }
+    function tempval(bytes memory st) public view returns(address) {
+        bytes memory _hash = abi.encodePacked(sha256(st));
+        return temp[_hash];
+    }
+    function registerBeneficiary(bytes memory aadhar_Hash, bytes memory _P_Hash) public {
         
         require(registered_aadhar[aadhar_Hash] == false, "Already registered");
         require(registered[msg.sender] == false, "Already registered");
         
-        person_hash[msg.sender] = P_Hash;
+        person_hash[msg.sender] = _P_Hash;
         registered[msg.sender] = true;
         registered_aadhar[aadhar_Hash] = true;
         registrationCount += 1;
     }
+
+    function concat(bytes memory a, bytes memory b) public pure returns(bytes memory){
+        return((abi.encodePacked(a,"$",b)));
+    }
+
+    function hash1(bytes memory b) public pure returns(string memory) {
+        return (string(abi.encodePacked(keccak256(b))));
+    }
+
+    function hash2(string memory s) public pure returns(bytes memory) {
+        // return (string(abi.encodePacked(keccak256(bytes(s)))));
+        return abi.encodePacked(sha256(bytes(s)));
+    }
+
+    function validate2(bytes memory hash_PI, bytes memory hash_secret, address beneficiary_address) public view returns(bytes memory) {
+        // get P_Hash
+        // bytes memory P_Hash = abi.encodePacked(sha256(concat(hash_PI, hash_secret)));
+        return person_hash[beneficiary_address];
+    }
+
+    function validate(bytes memory hash_PI, bytes memory hash_secret, address beneficiary_address) public view returns(bool) {
+        // get P_Hash
+        bytes memory P_Hash = abi.encodePacked(sha256(concat(hash_PI, hash_secret)));
+        bytes memory to_compare = person_hash[beneficiary_address];
+        return keccak256(P_Hash) == keccak256(to_compare);
+    }
+
+    function validate3(bytes memory hash_PI, bytes memory hash_secret, address beneficiary_address) public pure returns(bytes memory) {
+        // get P_Hash
+        bytes memory P_Hash = abi.encodePacked(sha256(concat(hash_PI, hash_secret)));
+        return P_Hash;
+    }
+
     
     function getName() public view returns(string memory) {
         string memory str = persons[msg.sender].name;

@@ -1,5 +1,6 @@
 import AddRole from "./pages/admin/add-role";
 import Blank from "./pages/blank";
+import ValidateBeneficiary from "./pages/doctor/validate-beneficiary";
 import UserHome from "./pages/user-home";
 import VaccineRegistration from "./pages/vaccine-registration";
 
@@ -36,6 +37,11 @@ export default  {
             label: 'Vaccinate',
             href: '/vaccinate',
             Component: Blank
+        },
+        {
+            label: 'Validate Beneficiary',
+            href: '/validate-beneficiary',
+            Component: ValidateBeneficiary
         }
     ],
     ADMIN: [

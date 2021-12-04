@@ -43,6 +43,14 @@ class App extends Component {
 
   async init() {
     await web3.load();
+    window.currentAccount = await web3.getCurrentAccount();
+    // window.Beneficiary.methods.concat(Buffer.from('abc'),Buffer.from('def')).call().then(res => {
+    //   console.log(res)
+    // });
+    // window.Beneficiary.methods.hash1(Buffer.from('abc')).call().then(res => {
+    //   console.log(res)
+    // });
+    window.Buffer = Buffer;
   }
 
   async getUserRole() {
