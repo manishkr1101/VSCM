@@ -60,10 +60,10 @@ class Beneficiary {
         const accountAddress = await web3.getCurrentAccount();
         try {
             const hashPI = hash([aadharNumber, name, age, complicacy]);
-            this.contract.methods.validate2(Buffer.from(hashPI), Buffer.from(hashSecret), patientAddress).call()
-            .then(r => console.log('v2', r))
-            this.contract.methods.validate3(Buffer.from(hashPI), Buffer.from(hashSecret), patientAddress).call()
-            .then(r => console.log('v3', r))
+            // this.contract.methods.validate2(Buffer.from(hashPI), Buffer.from(hashSecret), patientAddress).call()
+            // .then(r => console.log('v2', r))
+            // this.contract.methods.validate3(Buffer.from(hashPI), Buffer.from(hashSecret), patientAddress).call()
+            // .then(r => console.log('v3', r))
 
             return await this.contract.methods
                 .validate(Buffer.from(hashPI), Buffer.from(hashSecret), patientAddress)
@@ -73,7 +73,6 @@ class Beneficiary {
         } catch (error) {
             throw error;
         }
-        return false;
     }
 
     async isRegistered() {
