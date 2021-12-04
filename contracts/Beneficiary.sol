@@ -47,13 +47,13 @@ contract Beneficiary {
     //     registered[msg.sender] = true;
     //     registrationCount += 1;
     // }
-    mapping(bytes => address) temp;
+    mapping(address => bytes) public temp;
     function attach(bytes memory _hash) public {
-        temp[_hash] = msg.sender;
+        temp[msg.sender] = _hash;
     }
-    function tempval(bytes memory st) public view returns(address) {
-        bytes memory _hash = abi.encodePacked(sha256(st));
-        return temp[_hash];
+    function tempval() public view returns(string memory) {
+        
+        return string(temp[msg.sender]);
     }
     function registerBeneficiary(bytes memory aadhar_Hash, bytes memory _P_Hash) public {
         
@@ -64,6 +64,9 @@ contract Beneficiary {
         registered[msg.sender] = true;
         registered_aadhar[aadhar_Hash] = true;
         registrationCount += 1;
+    }
+    function myHash() public view returns(bytes memory) {
+        return ((person_hash[msg.sender]));
     }
 
     function concat(bytes memory a, bytes memory b) public pure returns(bytes memory){
@@ -88,7 +91,7 @@ contract Beneficiary {
     function validate(bytes memory hash_PI, bytes memory hash_secret, address beneficiary_address) public view returns(bool) {
         // get P_Hash
         bytes memory P_Hash = abi.encodePacked(sha256(concat(hash_PI, hash_secret)));
-        bytes memory to_compare = person_hash[beneficiary_address];
+        bytes memory to_compare = abi.encodePacked((person_hash[beneficiary_address]));
         return keccak256(P_Hash) == keccak256(to_compare);
     }
 

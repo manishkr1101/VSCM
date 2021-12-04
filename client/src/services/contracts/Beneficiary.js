@@ -43,7 +43,7 @@ class Beneficiary {
             const hashAadhar = hash([aadharNumber]);
             console.log('P_Hash ', hash([hashPI, hashSecret]));
             await this.contract.methods
-                .registerBeneficiary(Buffer.from(hashAadhar), Buffer.from(hash([hashPI, hashSecret])))
+                .registerBeneficiary(Buffer.from(hashAadhar), window.web3.utils.hexToBytes(hash([hashPI, hashSecret])))
                 .send({
                     from: account
                 })

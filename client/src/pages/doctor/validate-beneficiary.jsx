@@ -14,8 +14,8 @@ class ValidateBeneficiary extends Component {
             "Manish Kumar",
             "23",
             true,
-            '0x6768cb9617de2a2c17e1349369b6ef982b051be97e61b51816420f4b72cbe93d',
-            '0x20550f40000BcE4C7Be510a66B638ee49794a7F1'
+            hash(['c9de48fe-31c6-42a7-8ef6-93c5b845dfd9']),
+            '0x5ec58913aD16EE942d6c01fFB2C3D7828A76f56B'
         )
         .then(res => {
             console.log(res)
