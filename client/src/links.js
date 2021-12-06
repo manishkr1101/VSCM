@@ -1,5 +1,7 @@
 import AddRole from "./pages/admin/add-role";
-import Blank from "./pages/blank";
+import VaccineLegitimacy from "./pages/vaccine-legitimacy";
+import Blank from "./pages/blank"
+import Feedback from "./pages/feedback";
 import ValidateBeneficiary from "./pages/doctor/validate-beneficiary";
 import RegisterVaccineLots from "./pages/producer/register-vaccine-lots";
 import UserHome from "./pages/user-home";
@@ -21,12 +23,12 @@ export default  {
         {
             label: 'Feedback',
             href: '/user-feedback',
-            Component: Blank
+            Component: Feedback
         },
         {
             label: 'Check Vaccine Legitemecy',
             href: '/validate-vaccine',
-            Component: Blank
+            Component: VaccineLegitimacy
         }
     ],
     DOCTOR: [
