@@ -22,11 +22,11 @@ contract VaccineRegistry {
         return int(ben.getRegisteredCount()) - int(vaccinatedCount + availableVaccines);
     }
     
-    function registerVaccineLot(string memory _vaccineLotId, int256 _quantity, int temp) public {
+    function registerVaccineLot(string memory _vaccineLotId, int256 _quantity, int thresoldTemp) public {
         require(vaccineLots[_vaccineLotId] == 0);
         require(_quantity>0);
         vaccineLots[_vaccineLotId] = _quantity;
-        vaccineTemp[_vaccineLotId] = temp;
+        vaccineTemp[_vaccineLotId] = thresoldTemp;
         availableVaccines += uint256(_quantity);
     }
     
@@ -35,7 +35,7 @@ contract VaccineRegistry {
     }
     
     function vaccinate(uint _aadhaar, address patient_address, address doctor_address, string memory _vaccineLotId) public {
-        require(ben.doesExist(patient_address, _aadhaar), "User not registered");
+        // require(ben.doesExist(patient_address, _aadhaar), "User not registered");
         require(vaccinated[patient_address]==false, "Already vaccinated");
         require(vaccineLots[_vaccineLotId] > 0, "No such vaccine exist");
         
@@ -62,5 +62,4 @@ contract VaccineRegistry {
 
 contract Beneficiary {
     function getRegisteredCount() public view returns(uint);
-    function doesExist(address, uint) public view returns(bool);
 }

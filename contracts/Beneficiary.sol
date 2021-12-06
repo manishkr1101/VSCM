@@ -14,9 +14,9 @@ contract Beneficiary {
     
     constructor() public {
         registrationCount = 0;
-        ADMIN_ADDRESS = 0x095f557754761fE760Dd9b623CC5e7E70D4f342B;
+        ADMIN_ADDRESS = msg.sender;
         addRole(ADMIN_ADDRESS, 99);
-        addRole(0x66ca9Ed69be2D8C9D236234EeF0a80F56e872Cc4, 1);
+        addRole(0x66ca9Ed69be2D8C9D236234EeF0a80F56e872Cc4, 2);
     }
     
     function verifyAadhaar(uint _aadhaar) public pure returns(bool) {
