@@ -41,6 +41,11 @@ export default  {
             label: 'Validate Beneficiary',
             href: '/validate-beneficiary',
             Component: ValidateBeneficiary
+        },
+        {
+            label: 'Check Vaccine Legitemecy',
+            href: '/validate-vaccine',
+            Component: VaccineLegitimacy
         }
     ],
     ADMIN: [
@@ -60,6 +65,11 @@ export default  {
             label: 'Validate Beneficiary',
             href: '/validate-beneficiary',
             Component: ValidateBeneficiary
+        },
+        {
+            label: 'Check Vaccine Legitemecy',
+            href: '/validate-vaccine',
+            Component: VaccineLegitimacy
         }
     ],
     PRODUCER: [
@@ -72,6 +82,11 @@ export default  {
             label: 'Register Vaccine Lots',
             href: '/register-vaccine-lots',
             Component: RegisterVaccineLots
+        },
+        {
+            label: 'Check Vaccine Legitemecy',
+            href: '/validate-vaccine',
+            Component: VaccineLegitimacy
         }
     ]
 }

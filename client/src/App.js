@@ -18,7 +18,7 @@ class App extends Component {
     this.init().then(async () => {
       
       const role = await this.getUserRole();
-      console.log(role)
+      
       let links = []
       
       if(role === ROLE.DOCTOR) {
@@ -36,7 +36,13 @@ class App extends Component {
       else {
         links = Links.USER;
       }
+      // console.log(links)
+      // links.push(...Links.ALL)
+      // console.log(links)
       this.setState({links: links})
+    })
+    .catch(err => {
+      alert(err.message)
     })
     
   }

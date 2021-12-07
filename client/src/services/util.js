@@ -23,3 +23,8 @@ export function getSecretKey(publicKey) {
         return key;
     }
 }
+
+export function random(low, high) {
+    const diff = high - low + 1;
+    return low + (Math.random() * 1000007)%diff;
+}
