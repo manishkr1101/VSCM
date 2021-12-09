@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import VaccineRegistry from '../../services/contracts/VaccineRegistry';
 import {v4 as uuidv4} from 'uuid';
 import { random } from '../../services/util';
+import Frame from '../../components/Frame';
 
 class RegisterVaccineLots extends Component {
     componentDidMount() {
@@ -80,14 +81,16 @@ class RegisterVaccineLots extends Component {
     render() {
         return (
             <div>
-                <div className="container"  style={{maxWidth: "800px"}}>
-                    <div className="row">
-                        <h1>Register Vaccine Lots</h1>
+                <Frame>
+                    <div className="container"  style={{maxWidth: "800px"}}>
+                        <div className="row">
+                            <h1>Register Vaccine Lots</h1>
+                        </div>
+                        <div className="row">
+                            {this.VaccineLotRegistrationForm()}
+                        </div>
                     </div>
-                    <div className="row">
-                        {this.VaccineLotRegistrationForm()}
-                    </div>
-                </div>
+                </Frame>
             </div>
         );
     }

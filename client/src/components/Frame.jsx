@@ -6,6 +6,7 @@ class Frame extends Component {
             <div
                 style={{
                     backgroundImage: `url(${this.props.imgUrl})`,
+                    backgroundColor: "#eaefef",
                     width: "100%",
                     backgroundSize: "cover",
                     paddingTop: "20px",

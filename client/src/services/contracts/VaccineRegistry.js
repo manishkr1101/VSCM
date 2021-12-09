@@ -13,7 +13,14 @@ class VaccineRegistry {
         window.VaccineRegistry = this.contract;
     }
 
-    async vaccinate(patientAddress, doctorAddress, vaccineLotId, aadharNumber) {}
+    async vaccinate(patientAddress, doctorAddress, vaccineLotId, aadharNumber) {
+        await this.init();
+        return this.contract.methods
+            .vaccinate(Number.parseInt(aadharNumber), patientAddress, doctorAddress, vaccineLotId)
+            .send({
+                from: await web3.getCurrentAccount()
+            })
+    }
 
     async validateLegitemecy(vaccineLotId) {
         await this.init();

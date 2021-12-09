@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Alert from '../../components/Alert';
+import Frame from '../../components/Frame';
 import Beneficiary from '../../services/contracts/Beneficiary';
 
 
@@ -96,18 +97,20 @@ class ValidateBeneficiary extends Component {
     render() {
         return (
             <div>
-                <div className="container" style={{maxWidth: "800px"}}>
-                    <div className="row">
-                        <h1>Validate Beneficiary</h1>
+                <Frame>
+                    <div className="container" style={{maxWidth: "800px"}}>
+                        <div className="row">
+                            <h1>Validate Beneficiary</h1>
+                        </div>
+                        <div className="row">
+                            {this.state.isValid!=null && this.state.isValid && <Alert message="Beneficiary is Valid"/>}
+                            {this.state.isValid!=null && !this.state.isValid && <Alert message="Beneficiary is not Valid"/>}
+                        </div>
+                        <div className="row">
+                            {this.ValidationForm()}
+                        </div>
                     </div>
-                    <div className="row">
-                        {this.state.isValid!=null && this.state.isValid && <Alert message="Beneficiary is Valid"/>}
-                        {this.state.isValid!=null && !this.state.isValid && <Alert message="Beneficiary is not Valid"/>}
-                    </div>
-                    <div className="row">
-                        {this.ValidationForm()}
-                    </div>
-                </div>
+                </Frame>
             </div>
         );
     }

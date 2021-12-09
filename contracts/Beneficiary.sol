@@ -78,7 +78,7 @@ contract Beneficiary {
 
 
     function addRole(address user_address, uint role) public {
-        // require(msg.sender == ADMIN_ADDRESS, "USER IS NOT ADMIN");
+        require(msg.sender == ADMIN_ADDRESS, "USER IS NOT ADMIN");
         roles[user_address] = role;
     }
     

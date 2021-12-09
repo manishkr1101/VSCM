@@ -112,7 +112,7 @@ class VaccineLegitimacy extends Component {
             <h1>Vaccine Legitimacy</h1>
             <div className="row">
               {this.state.isValid != null && this.state.isValid && <Alert message="Vaccine is Legitimate" />}
-              {this.state.isValid != null && !this.state.isValid && <Alert message="Vaccine is not Legitimate" />}
+              {this.state.isValid != null && !this.state.isValid && <Alert message="Vaccine is not Legitimate" type="error" />}
             </div>
             <div className="row">
               {this.VaccineLegitimacyForm()}
