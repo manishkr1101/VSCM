@@ -7,7 +7,6 @@ import RegisterVaccineLots from "./pages/producer/register-vaccine-lots";
 import UserHome from "./pages/user-home";
 import VaccineProducerHome from "./pages/producer/vaccine-producer-home";
 import VaccineRegistration from "./pages/vaccine-registration";
-import Vaccination from "./pages/govt-auth/vaccination";
 
 export default  {
     USER: [
@@ -70,7 +69,7 @@ export default  {
         {
             label: 'Vaccinate',
             href: '/vaccinate',
-            Component: Vaccination
+            Component: Blank
         }       
         
     ],
