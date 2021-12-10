@@ -7,6 +7,7 @@ import RegisterVaccineLots from "./pages/producer/register-vaccine-lots";
 import UserHome from "./pages/user-home";
 import VaccineProducerHome from "./pages/producer/vaccine-producer-home";
 import VaccineRegistration from "./pages/vaccine-registration";
+import Vaccination from "./pages/govt-auth/vaccination";
 
 export default  {
     USER: [
@@ -34,13 +35,18 @@ export default  {
     DOCTOR: [
         {
             label: 'Home',
-            href: '/',   // background for doctors end, faq, counter, users hash and key
+            href: '/',
             Component: Blank
         },
         {
             label: 'Validate Beneficiary',
             href: '/validate-beneficiary',
             Component: ValidateBeneficiary
+        },
+        {
+            label: 'Check Vaccine Legitemecy',
+            href: '/validate-vaccine',
+            Component: VaccineLegitimacy
         }
     ],
     ADMIN: [
@@ -52,26 +58,37 @@ export default  {
     ],
     GOVT_AUTHORITY: [
         {
-            label: 'Vaccinate',
-            href: '/vaccinate',     // user detail ,hash, patient adddress, doctor address etc 
-            Component: Blank
-        },
-        {
             label: 'Validate Beneficiary',
             href: '/validate-beneficiary',
             Component: ValidateBeneficiary
-        }
+        },
+        {
+            label: 'Check Vaccine Legitemecy',
+            href: '/validate-vaccine',
+            Component: VaccineLegitimacy
+        },
+        {
+            label: 'Vaccinate',
+            href: '/vaccinate',
+            Component: Vaccination
+        }       
+        
     ],
     PRODUCER: [
         {
             label: 'Home',
-            href: '/',     // background for prod. end, required count of vaccines, expected date, another metrics
+            href: '/',
             Component: VaccineProducerHome
         },
         {
             label: 'Register Vaccine Lots',
             href: '/register-vaccine-lots',
             Component: RegisterVaccineLots
+        },
+        {
+            label: 'Check Vaccine Legitemecy',
+            href: '/validate-vaccine',
+            Component: VaccineLegitimacy
         }
     ]
 }
