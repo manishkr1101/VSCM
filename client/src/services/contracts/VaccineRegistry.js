@@ -13,13 +13,31 @@ class VaccineRegistry {
         window.VaccineRegistry = this.contract;
     }
 
-    async vaccinate(patientAddress, doctorAddress, vaccineLotId, aadharNumber) {}
+    async vaccinate(patientAddress, doctorAddress, vaccineLotId, aadharNumber) {
+        await this.init();
+        return this.contract.methods
+            .vaccinate(Number.parseInt(aadharNumber), patientAddress, doctorAddress, vaccineLotId)
+            .send({
+                from: await web3.getCurrentAccount()
+            })
+    }
 
-    async validateLegitemecy(vaccineLotId) {}
+    async validateLegitemecy(vaccineLotId) {
+        await this.init();
+        return this.contract.methods
+            .checkLegitmacy(vaccineLotId)
+            .call();
+    }
 
-    async getRequiredVaccineCount() {}
+    async getRequiredVaccineCount() {
+        await this.init();
+        return this.contract.methods
+            .getRequiredCount()
+            .call();
+    }
 
     async registerVaccineLots(vaccineLotId, quantity, temperature) {
+        await this.init();
         return this.contract.methods
             .registerVaccineLot(vaccineLotId, Number.parseInt(quantity), Number.parseInt(temperature))
             .send({
@@ -27,10 +45,38 @@ class VaccineRegistry {
             })
     }
 
-    // called by admin & drug producer to get data of lot
-    async monitor(vaccineLotId) {}
+    
+    /**
+     * called by admin & drug producer to get data of lot
+     * @param {String} vaccineLotId 
+     * @returns {Array<any>}
+     */
+    async getMonitoredData(vaccineLotId) {
+        await this.init();
+        
+        const data = await this.contract.methods
+            .getMonitoredData(vaccineLotId)
+            .call()
 
-    async updateMonitor(vaccineLotId, temperature) {}
+        const monitoredData = data.map(el => {
+            return {
+                temp: Number.parseInt(el.temp),
+                timestamp: 1000 * Number.parseInt(el.timestamp) // convert time into millisecond
+            }
+        });
+
+        return monitoredData.reverse();
+
+    }
+    
+    async monitor(vaccineLotId, temperature) {
+        await this.init();
+        return this.contract.methods
+            .monitor(vaccineLotId, Number.parseInt(temperature))
+            .send({
+                from: await web3.getCurrentAccount()
+            })
+    }
 }
 
 
