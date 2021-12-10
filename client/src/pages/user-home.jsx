@@ -3,6 +3,7 @@ import Beneficiary from "../services/contracts/Beneficiary";
 import { getSecretKey, hash } from "../services/util";
 import web3 from "../services/web3";
 import Faq from "react-faq-component";
+import Counter from "../components/Counter";
 
 class UserHome extends Component {
   constructor(props) {
@@ -51,10 +52,26 @@ class UserHome extends Component {
         </div>
         <div
           style={{
-            height: "500px",
-            backgroundColor: "black",
+            height: "80px",
+            backgroundColor: "#17255A",
+            textAlign: "center",
+            verticalAlign: "middle",
+            lineHeight: "200px",
           }}
         >
+          <text style={{ color: "white" }}>
+            <Counter></Counter>
+          </text>
+        </div>
+        <div
+          style={{
+            height: "500px",
+            backgroundColor: "#18206F",
+          }}
+        >
+          <text style={{ color: "white" }}>
+            <h1>FAQ Section</h1>
+          </text>
           {/* <Faq data={data} styles={styles} config={config} /> */}
         </div>
       </div>

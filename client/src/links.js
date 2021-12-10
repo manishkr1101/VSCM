@@ -34,7 +34,7 @@ export default  {
     DOCTOR: [
         {
             label: 'Home',
-            href: '/',
+            href: '/',   // background for doctors end, faq, counter, users hash and key
             Component: Blank
         },
         {
@@ -53,7 +53,7 @@ export default  {
     GOVT_AUTHORITY: [
         {
             label: 'Vaccinate',
-            href: '/vaccinate',
+            href: '/vaccinate',     // user detail ,hash, patient adddress, doctor address etc 
             Component: Blank
         },
         {
@@ -65,7 +65,7 @@ export default  {
     PRODUCER: [
         {
             label: 'Home',
-            href: '/',
+            href: '/',     // background for prod. end, required count of vaccines, expected date, another metrics
             Component: VaccineProducerHome
         },
         {
