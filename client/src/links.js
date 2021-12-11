@@ -8,8 +8,9 @@ import UserHome from "./pages/user-home";
 import VaccineProducerHome from "./pages/producer/vaccine-producer-home";
 import VaccineRegistration from "./pages/vaccine-registration";
 import Vaccination from "./pages/govt-auth/vaccination";
+import DoctorHome from "./pages/doctor/doctor-home";
 
-export default  {
+export default {
     USER: [
         {
             label: 'Home',
@@ -36,7 +37,7 @@ export default  {
         {
             label: 'Home',
             href: '/',
-            Component: Blank
+            Component: DoctorHome
         },
         {
             label: 'Validate Beneficiary',
@@ -71,8 +72,8 @@ export default  {
             label: 'Vaccinate',
             href: '/vaccinate',
             Component: Vaccination
-        }       
-        
+        }
+
     ],
     PRODUCER: [
         {
