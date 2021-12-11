@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Beneficiary from "../services/contracts/Beneficiary";
 import { getSecretKey, hash } from "../services/util";
 import web3 from "../services/web3";
-import Faq from "react-faq-component";
+import Faqq from "../components/Faq";
 import Counter from "../components/Counter";
 
 class UserHome extends Component {
@@ -37,10 +37,11 @@ class UserHome extends Component {
             width: "100%",
             backgroundPosition: "center",
             backgroundSize: "cover",
-            padding: "0",
           }}
         >
-          <h1>
+          <h1
+            style={{ color: "white", marginLeft: "30px", paddingTop: "30px" }}
+          >
             Welcome {this.state.user?.name}, You are{" "}
             {this.state.registered ? "" : "not"} registered.
           </h1>
@@ -68,11 +69,16 @@ class UserHome extends Component {
             height: "500px",
             backgroundColor: "#18206F",
           }}
+        ></div>
+
+        <div
+          style={{
+            height: "500px",
+            backgroundColor: "#18206F",
+            paddingTop: "60px",
+          }}
         >
-          <text style={{ color: "white" }}>
-            <h1>FAQ Section</h1>
-          </text>
-          {/* <Faq data={data} styles={styles} config={config} /> */}
+          <Faqq></Faqq>
         </div>
       </div>
     );

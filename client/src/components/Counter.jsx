@@ -17,7 +17,8 @@ function Counter() {
             <center>
               Total Vaccination Doses: {counter} <br />
               India marches beyond 1 Billion Vaccine doses!
-            </center>
+            </center>{" "}
+            <br />
           </text>
         </h3>
       </div>

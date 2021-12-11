@@ -21,7 +21,7 @@ class Beneficiary {
     }
 
     async init() {
-        if(this.contract != null) return;
+        if (this.contract != null) return;
         this.contract = await web3.buildContractWithAbi(BeneficiaryAbi);
         window.Beneficiary = this.contract  // TODO : remove
     }
@@ -35,7 +35,7 @@ class Beneficiary {
         await this.init();
         const account = await web3.getCurrentAccount();
         try {
-            
+
 
             const hashPI = hash([aadharNumber, name, age, complicacy]);
             console.log('PI_Hash', hashPI); // TODO : remove
@@ -48,11 +48,11 @@ class Beneficiary {
                     from: account
                 })
 
-            this.userTable.insert(account, {aadhar: aadharNumber, name, age, complicacy});
+            this.userTable.insert(account, { aadhar: aadharNumber, name, age, complicacy });
         } catch (error) {
             throw new Error(error.message)
         }
-        
+
     }
 
     async validate(aadharNumber, name, age, complicacy, hashSecret, patientAddress) {
